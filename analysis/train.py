@@ -1,4 +1,4 @@
-from model import model_res as model
+from model import build_can as model
 from generator import Generator 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +16,10 @@ STEPS_PER_EPOCH = len(os.listdir(PATH_IMAGE))//BATCH_SIZE
 
 gener = Generator(PATH_IMAGE, PATH_FLASH, BATCH_SIZE)
 
-model = model((160, 160, 3))
+model = model(input_shape = (160, 160, 3),
+                          conv_channels=64,
+                          out_channels=3,
+                          name='can')
 
 model.compile(optimizer=OPTIMIZER, loss=LOSS, metrics=[METRICS])
 model.summary()

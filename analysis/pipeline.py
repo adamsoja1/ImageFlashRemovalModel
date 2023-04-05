@@ -18,11 +18,11 @@ class Model:
 
 class PreprocessPipeline:
     def __init__(self,path_to_model:str):
-        self.model = tf.keras.models.load_model(path_to_model)
-        # self.model_arch = model(input_shape = (160, 160, 3),
-        #                           conv_channels=64,
-        #                           out_channels=3,
-        #                           name='can')
+        # self.model = tf.keras.models.load_model(path_to_model)
+        self.model_arch = model(input_shape = (160, 160, 3),
+                                  conv_channels=64,
+                                  out_channels=3,
+                                  name='can')
         
         
     def __preprocess_image(self,image):
@@ -39,7 +39,7 @@ class PreprocessPipeline:
         return image
     
     def process(self,image):
-        # self.model_arch.load_weights('FIRSTMODEL_weight.HDF5 ')
+        self.model_arch.load_weights('FIRSTMODEL_weight.HDF5 ')
         img = self.__preprocess_image(image)
         prediction = self.model.predict(img)
         image_output = self.__postprocess_image(prediction)
@@ -52,7 +52,7 @@ image = plt.imread('output.png')
 image = cv2.resize(image,(160,160))
 plt.imshow(image)
 plt.show()
-pipeline = PreprocessPipeline('FIRSTMODEL.h5')
+pipeline = PreprocessPipeline('models/FIRSTMODEL.h5')
 out = pipeline.process(image)
 # plt.imshow(out)
 
