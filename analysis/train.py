@@ -7,7 +7,7 @@ import os
 
 PATH_IMAGE = 'flickr30k_images'
 PATH_FLASH = 'flashed'
-BATCH_SIZE = 20
+BATCH_SIZE = 5
 INPUT_SIZE = (160,160,3)
 OPTIMIZER  = tf.keras.optimizers.Adam(lr=0.0001)
 LOSS = 'mse'
@@ -21,6 +21,7 @@ model = model(input_shape = (160, 160, 3),
                           out_channels=3,
                           name='can')
 
+
 model.compile(optimizer=OPTIMIZER, loss=LOSS, metrics=[METRICS])
 model.summary()
 
@@ -31,6 +32,6 @@ history = model.fit(
 
 
 
-model.save(f'FIRSTMODEL.h5')
+#model.save(f'hugemodel.h5')
 
-# model.save_weights("FIRSTMODEL_weight.HDF5 ")
+model.save_weights("modelhuge_weights.HDF5 ")

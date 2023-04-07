@@ -25,3 +25,5 @@ main_data/
 *.HDF5
 /models
 models/
+*.index
+*.data-0000-of-0001

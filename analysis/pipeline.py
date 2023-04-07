@@ -39,16 +39,16 @@ class PreprocessPipeline:
         return image
     
     def process(self,image):
-        self.model_arch.load_weights('FIRSTMODEL_weight.HDF5 ')
+        self.model_arch.load_weights('modelhuge_weights.HDF5 ')
         img = self.__preprocess_image(image)
-        prediction = self.model.predict(img)
+        prediction = self.model_arch.predict(img)
         image_output = self.__postprocess_image(prediction)
         return image_output
     
     def predict(self,image):
         return self.model.predict(image)
     
-image = plt.imread('output.png')  
+image = plt.imread('output.jpg')  
 image = cv2.resize(image,(160,160))
 plt.imshow(image)
 plt.show()
